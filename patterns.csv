@@ -1,0 +1,5 @@
+PatternID,QoQ_Price,YoY_Price,QoQ_Volume,YoY_Volume,Offplan_Level,Insight_Narrative,EndUser_Advice,Investor_Advice
+P001,Up,Up,Up,Up,Low,"Strong price + strong volume — confidence across the board. Attractive for capital growth and short-term flip.","✅ Buy – Momentum Market","✅ Buy – Safe Upside"
+P002,Up,Down,Down,Down,High,"Short-term spike likely off-plan led — weak base. Investor entry risky without strong resale demand.","⚠️ Wait – Volatile Phase","🕓 Hold – Evaluate Fit First"
+P003,Down,Down,Down,Down,Any,"Value and demand weakening — risky entry. Capital depreciation likely. Yield unattractive.","❌ Avoid – Cooling Market","⚠️ Wait – Downturn Zone"
+P063,Down,Flat,Flat,Flat,Low,"Low energy zone — no price growth or volume signal. Wait for catalyst.","❌ Avoid – Dead Momentum","❌ Avoid – No Life in Market"
