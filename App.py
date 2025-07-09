@@ -1,17 +1,33 @@
-
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(layout="wide")
-st.title("Serdal MVP – Real Estate Pattern Advisor")
+# Google Sheets public CSV link
+sheet_url = "https://docs.google.com/spreadsheets/d/1R71kyvSYgRSMl8o4bfXhV9FH1N50D2uJ/export?format=csv"
 
-# Load the pattern CSV
-df = pd.read_csv("Pattern.csv")
+st.set_page_config(page_title="Serdal PatternMatrix", layout="wide")
 
-# Display table and filters
-st.sidebar.header("Filter Options")
-pattern_id = st.sidebar.selectbox("Select Pattern ID", df['PatternID'].unique())
-filtered_df = df[df['PatternID'] == pattern_id]
+@st.cache_data(ttl=600)
+def load_data():
+    return pd.read_csv(sheet_url)
 
-st.subheader("Pattern Insight")
-st.write(filtered_df[["PatternID", "Insight Narrative", "Recommendation"]])
+df = load_data()
+
+st.title("🔍 Serdal PatternMatrix Dashboard")
+
+# Filters
+pattern_ids = df['PatternID'].dropna().unique()
+selected_pattern = st.selectbox("Select Pattern ID", sorted(pattern_ids))
+
+audience = st.radio("Select Audience View", ["Investor", "End-user"], horizontal=True)
+
+# Filtered row
+row = df[df['PatternID'] == selected_pattern].iloc[0]
+
+# Show insight & recommendation
+st.subheader("📌 Insight Narrative")
+st.markdown(row['Insight Narrative'])
+
+st.subheader("✅ Recommendation")
+st.markdown(row['Recommendation'])
+
+st.markdown(f"**Tags**: QoQ Price: `{row['QoQ_Price']}`, YoY Price: `{row['YoY_Price']}`, QoQ Volume: `{row['QoQ_Vol']}`, YoY Volume: `{row['YoY_Vol']}`, Offplan Level: `{row['Offplan_Level']}`")
