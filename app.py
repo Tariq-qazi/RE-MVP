@@ -1,7 +1,7 @@
 
 import streamlit as st
 import pandas as pd
-pip install -r requirements.txt
+
 # Load the full patterns CSV
 @st.cache_data
 def load_data():
